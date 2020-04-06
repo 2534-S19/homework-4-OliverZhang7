@@ -12,7 +12,8 @@ int main(void)
     initBoard();
     // TODO: Declare a UART config struct as defined in uart.h.
     //       To begin, configure the UART for 9600 baud, 8-bit payload (LSB first), no parity, 1 stop bit.
-    eUSCI_UART_Config uartConfig = {
+    eUSCI_UART_ConfigV1 uartConfig =
+    {
              EUSCI_A_UART_CLOCKSOURCE_SMCLK,               // SMCLK Clock Source = 3MHz
              19,                                           // UCBR = 19
              8,                                            // UCBRF = 8
@@ -21,8 +22,9 @@ int main(void)
              EUSCI_A_UART_LSB_FIRST,                       // LSB First
              EUSCI_A_UART_ONE_STOP_BIT,                    // One stop bit
              EUSCI_A_UART_MODE,                            // UART mode
-             EUSCI_A_UART_OVERSAMPLING_BAUDRATE_GENERATION // Oversampling
-        };
+             EUSCI_A_UART_OVERSAMPLING_BAUDRATE_GENERATION, // Oversampling
+             EUSCI_A_UART_8_BIT_LEN
+    };
 
     // TODO: Make sure Tx AND Rx pins of EUSCI_A0 work for UART and not as regular GPIO pins.
     GPIO_setAsPeripheralModuleFunctionInputPin(GPIO_PORT_P1, GPIO_PIN2, GPIO_PRIMARY_MODULE_FUNCTION);
