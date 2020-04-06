@@ -64,10 +64,21 @@ int main(void)
         if (finished==true)
         {
             int i;
-            for(i=0; i<40; i++)
+            for(i=0; i<48; i++)//there are total 48 chars in the string
             {
             if (UART_getInterruptStatus (EUSCI_A0_BASE, EUSCI_A_UART_TRANSMIT_INTERRUPT_FLAG) == EUSCI_A_UART_TRANSMIT_INTERRUPT_FLAG)
-                  UART_transmitData(EUSCI_A0_BASE, response[i]);
+            {
+                  int k;
+                  for(k=0; k<48; k++)
+                  {
+                      UART_transmitData(EUSCI_A0_BASE, response[k]);
+                  }
+                  //UART_transmitData(EUSCI_A0_BASE, '\n');
+                  //UART_transmitData(EUSCI_A0_BASE, '\n');
+                  //UART_transmitData(EUSCI_A0_BASE, '\r');
+                  //UART_transmitData(EUSCI_A0_BASE, response[3]);
+            }
+
             }
 
             finished=false;
@@ -113,16 +124,16 @@ bool charFSM(char rChar)
         case S253:
             if (rChar == 0x34)
             {
-                currentState = S2534;
+                currentState = idle;
                 finished = true;
             }
-            else
-                currentState = idle;
+            //else
+                //currentState = idle;
             break;
 
-        case S2534:
-            currentState = idle;
-            break;
+        //case S2534:
+            //currentState = idle;
+            //break;
     }
 
     return finished;
