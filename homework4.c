@@ -73,10 +73,6 @@ int main(void)
                   {
                       UART_transmitData(EUSCI_A0_BASE, response[k]);
                   }
-                  //UART_transmitData(EUSCI_A0_BASE, '\n');
-                  //UART_transmitData(EUSCI_A0_BASE, '\n');
-                  //UART_transmitData(EUSCI_A0_BASE, '\r');
-                  //UART_transmitData(EUSCI_A0_BASE, response[3]);
             }
 
             }
